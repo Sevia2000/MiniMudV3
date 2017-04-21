@@ -1,4 +1,4 @@
-package at.fhv.minimudv3.map;
+package at.fhv.minimudv3.game;
 
 /**
  * Describes the directions that a field can have.
@@ -18,7 +18,7 @@ public enum Directions {
         Value = i;
     }
 
-    public static Directions getReverse(Directions direction) {
+    public static Directions getReverse(Directions direction) { //TODO geht sicherlich auch besser
         switch ((direction.getValue() + 2) % 4) {
             case 0:
                 return NORTH;
