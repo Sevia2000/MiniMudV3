@@ -27,4 +27,21 @@ class ItemTest {
         assertTrue(i0.getWeight() == clonetest.getWeight());
     }
 
+    @Test
+    void getWeightTest() {
+        assertTrue(i0.getWeight() == 10);
+        assertTrue(i1.getWeight() == 100);
+        assertTrue(i2.getWeight() == 1000);
+    }
+
+    @Test
+    void descriptionTest() {
+        assertTrue(i0.getShortDescription().equals("td0"));
+        assertTrue(i1.getShortDescription().equals("td1"));
+        assertTrue(i2.getShortDescription().equals("td2"));
+        assertTrue(i0.getLongDescription().equals("test description 0"));
+        assertTrue(i1.getLongDescription().equals("test description 1"));
+        assertTrue(i2.getLongDescription().equals("test description 2"));
+    }
+
 }

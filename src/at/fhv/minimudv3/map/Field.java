@@ -8,7 +8,7 @@ import java.util.Map;
 
 /**
  * The Class describes a field in the Mud. You can bind to fields together
- * <p>
+ *
  * Created by Oliver H on 20.04.2017.
  */
 public class Field {
