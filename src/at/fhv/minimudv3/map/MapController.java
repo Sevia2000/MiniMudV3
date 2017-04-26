@@ -64,7 +64,7 @@ public class MapController implements Serializable {
      *
      * @param mapPath Where should the map be saved with filename
      */
-    public void saveMap(String mapPath) {
+    public synchronized void saveMap(String mapPath) {
         try {
             FileOutputStream fileOut = new FileOutputStream(mapPath);
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
@@ -116,7 +116,7 @@ public class MapController implements Serializable {
      * @return {@code {@link Player}} - The Player
      * @throws IllegalPlayerNameException
      */
-    public Player addPlayer(String name) throws IllegalPlayerNameException {
+    public synchronized Player addPlayer(String name) throws IllegalPlayerNameException {
         for (Player player : _playerSavedOnMap) {
             if (player.getName().equals(name)) {
                 if (!_playerPlayOnMap.contains(player)) {
@@ -133,7 +133,7 @@ public class MapController implements Serializable {
      *
      * @param player - The Player
      */
-    public void logout(Player player) {
+    public synchronized void logout(Player player) {
         if (_playerPlayOnMap.contains(player)) {
             _playerPlayOnMap.remove(player);
         }
@@ -148,7 +148,7 @@ public class MapController implements Serializable {
      * @param field - The field where should be looked at
      * @return {@code List<Player>} - A List of all player on this field
      */
-    private List<Player> getAllPlayerOnPosition(Field field) {
+    private synchronized List<Player> getAllPlayerOnPosition(Field field) {
         List<Player> temp = new LinkedList<>();
         for (Player player : _playerPlayOnMap) {
             if (player.currPosition() == field) {
@@ -163,7 +163,7 @@ public class MapController implements Serializable {
      *
      * @return {@code List<Player>} - The List of all player
      */
-    public List<Player> lookForAllPlayerOnMap() {
+    public synchronized List<Player> lookForAllPlayerOnMap() {
         return Collections.unmodifiableList(_playerPlayOnMap);
     }
 
@@ -182,7 +182,7 @@ public class MapController implements Serializable {
      * @param player  - The player that want to talk
      * @param message - The message
      */
-    public void talkToAll(Player player, String message) {
+    public synchronized void talkToAll(Player player, String message) {
         List<Player> temp = getAllPlayerOnPosition(player.currPosition());
         for (Player player1 : temp) {
             player1.outStream((player1 == player) ? "You Say: " : player.getName() + " say: ");
