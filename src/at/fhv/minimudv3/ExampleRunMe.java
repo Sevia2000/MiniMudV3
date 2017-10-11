@@ -42,6 +42,8 @@ public class ExampleRunMe {
             e.printStackTrace();
         }
 
+        System.out.println("Test");
+
         // Change the OutPut (mouth) from the player to S-out
         player.setPlayerOutstream(System.out::println);
 
